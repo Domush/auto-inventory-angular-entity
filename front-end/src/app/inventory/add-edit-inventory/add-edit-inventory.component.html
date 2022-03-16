@@ -1,0 +1,21 @@
+<form>
+  <div class="mb-3">
+  <label for="carModelId" class="form-label">Inventory Type</label>
+  <input type="text" class="form-control" name="carModelId" [(ngModel)]="carModelId" *ngIf="inventory.id!=0" disabled>
+<select name="carModelId" class="form-control" id="carModelId" [(ngModel)]="carModelId" *ngIf="inventory.id==0">
+  <option *ngFor="let car of carModelList$|async" [value]="car.id">{{car.model}}</option>
+</select>
+</div>
+<div class="mb-3">
+  <label for="status" class="form-label">Status</label>
+  <select name="status" id="status" class="form-control" [(ngModel)]="status">
+    <option *ngFor="let status of statusList$|async" [value]="status.statusName">{{status.statusName}}</option>
+  </select>
+</div>
+<div class="mb-3">
+  <label for="comments" class="form-label">Comments</label>
+  <input type="text" class="form-control" [(ngModel)]="comments" name="comments">
+</div>
+<button class="btn btn-primary" *ngIf="inventory.id==0" (click)="addInventory()">Add</button>
+<button class="btn btn-primary" *ngIf="inventory.id!=0" (click)="updateInventory()">Update</button>
+</form>
